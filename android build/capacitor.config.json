@@ -1,0 +1,14 @@
+{
+  "appId": "com.cinemuah.app",
+  "appName": "Cinemuah",
+  "webDir": "www",
+  "backgroundColor": "#0a0a0a",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#0a0a0a"
+  }
+}

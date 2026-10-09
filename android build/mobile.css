@@ -1,0 +1,53 @@
+
+/* ── New shared features on the phone ─────────────────────────────────────────── */
+.nav-compact, .navbar-drag, .window-controls { display: none !important; }   /* desktop-only chrome */
+
+@media (max-width: 820px) {
+  /* Featured banner (online Home) */
+  .hero-dots { left: 14px; bottom: 12px; }
+  .hero-dot { width: 20px; } .hero-dot.active { width: 32px; }
+  [data-testid="featured-hero"] .hero-description { -webkit-line-clamp: 2; font-size: 13px; }
+  .hero-actions .btn-lg { padding: 11px 18px; font-size: 14px; }
+
+  /* Genre pills scroll by touch; no arrows */
+  .genre-pills-arrow { display: none !important; }
+  .genre-pills-wrap { margin: 0 0 12px; }
+  .genre-pill { padding: 7px 14px; }
+
+  /* Settings: the sidebar becomes a row of tabs on top, and the save bar sits above the tab bar */
+  .settings-layout { display: block; padding: calc(var(--nav-height) + 12px) 14px 0; }
+  .settings-nav { position: static; flex-direction: row; overflow-x: auto; gap: 6px; margin-bottom: 14px; scrollbar-width: none; }
+  .settings-nav::-webkit-scrollbar { display: none; }
+  .settings-nav .settings-title { display: none; }
+  .settings-nav-item { flex-shrink: 0; padding: 9px 14px; border-left: none; border-radius: 999px; background: var(--bg-tertiary); font-size: 13px; }
+  .settings-nav-item.active { background: var(--accent); color: #fff; }
+  .settings-head h2 { font-size: 24px; }
+  .settings-content { padding-bottom: 150px; }
+  .setting-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .setting-row-control .settings-input { width: 100%; }
+  .settings-savebar { bottom: calc(var(--android-bottom-bar) + env(safe-area-inset-bottom, 0px)); padding: 10px 14px; flex-direction: column; align-items: stretch; gap: 8px; }
+  .settings-savebar span { display: none; }
+
+  /* Search suggestions open under the full-width search box */
+  .search-suggest { position: fixed; left: 12px; right: 12px; top: 54px; min-width: 0; z-index: 1200; }
+  .search-filters { gap: 8px; }
+  .search-filters select { flex: 1 1 40%; }
+
+  /* Profiles */
+  .profile-grid { gap: 16px; }
+  .profile-tile { width: 96px; }
+  .profile-tile .profile-avatar { width: 84px !important; height: 84px !important; }
+  .profile-modal { min-width: 0; width: 92vw; padding: 22px; }
+
+  /* Player extras */
+  .up-next-card { right: 12px; left: 12px; bottom: 96px; width: auto; }
+  .player-float-btn { right: 12px !important; bottom: 92px !important; }
+  .cc-menu, .speed-menu { max-width: 92vw; }
+  .speed-pill { padding: 6px 10px 6px 12px; font-size: 12px; }
+  .trailer-frame { width: 100vw; border-radius: 0; }
+
+  /* Fix-match / duplicates are desktop tools */
+  .fix-match, .dup-group { display: none; }
+  .sources-warning { flex-wrap: wrap; }
+  .followed-next { font-size: 10px; }
+}

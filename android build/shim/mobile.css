@@ -1,0 +1,160 @@
+/* Phone layout for the shared UI. The desktop CSS is untouched; everything here only applies on small screens. */
+
+:root { --android-bottom-bar: 58px; }
+
+html, body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; }
+* { -webkit-touch-callout: none; }
+input, textarea { -webkit-user-select: text; user-select: text; }
+
+@media (max-width: 820px) {
+  :root { --nav-height: 56px; }
+
+  .titlebar { display: none; }
+  .app-container { height: 100vh; height: 100dvh; }
+  .main-content { padding-bottom: calc(var(--android-bottom-bar) + env(safe-area-inset-bottom, 0px)); }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Top bar: logo, mode switch, search, downloads, settings Ã¢â€â‚¬Ã¢â€â‚¬ */
+  .navbar { top: 0; padding: 0 12px; height: var(--nav-height); background: #0a0a0a; backdrop-filter: none; transform: none; border-bottom: 1px solid var(--border); }
+  .navbar-gradient { display: none; }
+  .navbar-logo { margin-right: 8px; }
+  .navbar-logo-img { height: 22px; }
+  .navbar-right { gap: 2px; position: static; }   /* the expanded search box is positioned against the whole bar */
+  .navbar-right > span { display: none; }               /* "158 movies" counter */
+  .navbar-right button[title="Minimize"],
+  .navbar-right button[title="Maximize"],
+  .navbar-right button[title="Close"] { display: none; }
+  .navbar-right > div:last-child:has(button[title="Minimize"]) { display: none; }
+
+  .mode-switch { margin-right: 2px; padding: 2px; flex-shrink: 0; }
+  .mode-switch-btn { font-size: 0; gap: 0; padding: 0; min-width: 42px; min-height: 40px; justify-content: center; }
+  .mode-switch-btn svg { width: 18px; height: 18px; }
+
+  /* Search collapses to an icon and opens across the whole bar when focused */
+  .search-container { position: static; flex-shrink: 0; min-width: 40px; }
+  /* The desktop .icon-btn is 38x38 (and a flex item, so a crowded bar squeezed it narrower still): keep every top-bar button a 40px touch target */
+  .navbar .icon-btn { width: 40px; height: 40px; min-width: 40px; min-height: 40px; flex-shrink: 0; }
+  .navbar-right { flex-shrink: 0; }
+  .search-box button { min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+  .search-suggest-x { min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+  .search-box { position: relative; width: 40px; min-width: 40px; height: 40px; padding: 0; justify-content: center; border-color: transparent; background: transparent; }
+  .search-box .search-input { position: absolute; inset: 0; width: 100%; opacity: 0; }
+  .search-box:focus-within, .search-box:has(.search-input:not(:placeholder-shown)) {
+    position: absolute; left: 12px; right: 12px; top: 8px; width: auto; height: 40px;
+    padding: 0 14px; justify-content: flex-start; background: #1a1a1a; border-color: var(--border); z-index: 5;
+  }
+  .search-box:focus-within .search-input,
+  .search-box:has(.search-input:not(:placeholder-shown)) .search-input { position: static; opacity: 1; width: auto; flex: 1; font-size: 15px; }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Bottom tab bar Ã¢â€â‚¬Ã¢â€â‚¬ */
+  .navbar-nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 1100;
+    height: calc(var(--android-bottom-bar) + env(safe-area-inset-bottom, 0px));
+    padding: 0 4px env(safe-area-inset-bottom, 0px);
+    background: rgb(10, 10, 10); border-top: 1px solid var(--border);
+    display: flex; align-items: stretch; justify-content: space-around; gap: 0;
+  }
+  .nav-link { flex: 1; padding: 0 2px; border-radius: 0; background: none !important; font-size: 11px; font-weight: 600; text-align: center; white-space: normal; line-height: 1.15; }
+  .nav-link.active { color: var(--accent); box-shadow: inset 0 2px 0 var(--accent); }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Content spacing Ã¢â€â‚¬Ã¢â€â‚¬ */
+  [style*="48px 48px"] { padding-left: 14px !important; padding-right: 14px !important; padding-top: calc(var(--nav-height) + 14px) !important; padding-bottom: 28px !important; }
+  .settings-page { padding: calc(var(--nav-height) + 14px) 14px 28px; max-width: none; }
+  .section-header { padding: 0 14px; }
+  .movie-row { padding: 8px 14px 12px; gap: 10px; }
+  .empty-state { padding: 60px 20px; }
+  .toast-container { right: 12px; left: 12px; bottom: calc(var(--android-bottom-bar) + 14px); align-items: stretch; }
+  .toast { max-width: none; }
+
+  .search-results-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)) !important; gap: 12px 10px !important; }
+  [style*="width: 160px"] { width: 118px !important; }
+  .movie-card-title { font-size: 12px; }
+  select, input[type="text"] { max-width: 100%; }
+  h1[style*="font-size: 36px"] { font-size: 28px !important; }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Hero Ã¢â€â‚¬Ã¢â€â‚¬ */
+  .hero { height: 58vh; min-height: 360px; }
+  .hero-content { left: 14px; right: 14px; bottom: 28px; }
+  .hero-title { font-size: clamp(30px, 9vw, 44px); }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Detail dialogs Ã¢â€â‚¬Ã¢â€â‚¬ */
+  .movie-detail { margin: 0; border-radius: 0; min-height: 100%; max-width: none !important; }
+  .detail-backdrop { height: 220px; }
+  .detail-content { padding: 0 16px 24px; margin-top: -50px; }
+  .detail-title { font-size: 28px; }
+  [style*="36px 40px 20px"] { padding: 52px 16px 12px !important; gap: 14px !important; }
+  [style*="width: 170px"] { width: 96px !important; }
+  [style*="0px 40px 40px"] { padding: 0 14px 24px !important; }
+  .movie-detail .btn-lg { padding: 11px 16px; font-size: 14px; }
+  .movie-detail div:has(> .btn-lg) { flex-wrap: wrap; }
+  .movie-detail label { flex-wrap: wrap; row-gap: 4px; }
+
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Player Ã¢â€â‚¬Ã¢â€â‚¬ */
+  .player-top-bar { padding: 12px 16px; }
+  .player-bottom-bar { padding: 0 16px 10px; }
+  .player-controls { gap: 2px; }
+  .player-time { margin: 0 4px; font-size: 12px; }
+  .volume-slider, .speed-select, button[title="Picture in Picture"] { display: none; }
+}
+
+/* Touch screens have no hover: skip the hover overlay so a tap opens the item straight away */
+@media (hover: none) {
+  .movie-card-overlay { display: none !important; }
+  .movie-card:hover { transform: none; }
+  .row-scroll-btn { display: none !important; }
+}
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Android-only Ã¢â€â‚¬Ã¢â€â‚¬ */
+.android .settings-section:has(input[type="password"]) { display: none; }   /* TMDB key: no metadata scraping on the phone */
+.android .settings-path button { display: none; }                          /* the library folder is fixed: Movies/Cinemuah */
+.keyboard-open .navbar-nav { display: none; }
+.keyboard-open .main-content { padding-bottom: 0; }
+.android .detail-actions .btn-sm { display: none; }   /* Edit / Refresh metadata: no database or TMDB on the phone */
+
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Parity with the desktop features (profiles, settings, genre pills, suggestions, player extras) Ã¢â€â‚¬Ã¢â€â‚¬ */
+.nav-compact, .navbar-drag, .window-controls { display: none !important; }
+.genre-pills-wrap .genre-pills-arrow, .genre-pills-arrow.left, .genre-pills-arrow.right { display: none !important; }
+.android .fix-match, .android .dup-group { display: none; }
+
+@media (max-width: 820px) {
+  .hero-dots { left: 14px; bottom: 14px; }
+  .genre-pills { padding: 0 14px; }
+
+  .settings-layout { display: block; }
+  .settings-nav { position: fixed; left: 0; right: 0; bottom: calc(var(--android-bottom-bar) + env(safe-area-inset-bottom, 0px)); z-index: 1090; display: flex; overflow-x: auto; gap: 4px; padding: 6px 8px; background: #0a0a0a; border-top: 1px solid var(--border); }
+  .settings-nav .settings-title { display: none; }
+  .settings-nav-item { flex: 0 0 auto; white-space: nowrap; }
+  .settings-content { min-width: 0; max-width: 100%; padding-bottom: 130px; }
+  .settings-savebar { position: fixed; left: 0; right: 0; bottom: calc(var(--android-bottom-bar) + env(safe-area-inset-bottom, 0px) + 46px); z-index: 1095; }
+  .setting-row { flex-direction: column; align-items: stretch; gap: 10px; min-width: 0; max-width: 100%; }
+  .setting-row-text, .setting-row-control { min-width: 0; max-width: 100%; flex-shrink: 1; }
+  .setting-row-control .settings-input, .setting-row-control select { width: 100%; }
+  .setting-row-control button { max-width: 100%; }
+  .settings-path-value { word-break: break-all; white-space: normal; }
+  .settings-profiles { min-width: 0; }
+
+  .search-suggest { position: fixed; top: calc(var(--nav-height) + 4px); left: 12px; right: 12px; min-width: 0; max-height: 60vh; overflow-y: auto; }
+
+  .profile-grid { gap: 18px; max-width: 100%; padding: 0 12px; }
+  .profile-modal { max-width: calc(100vw - 24px); }
+
+  .up-next-card { right: 12px; left: 12px; bottom: 96px; width: auto; }
+  .player-float-btn { padding: 8px 14px; font-size: 13px; }
+  .cc-menu, .speed-menu { max-width: calc(100vw - 24px); }
+}
+
+
+/* Narrow phones (~360dp): logo + mode switch + 4 icons of 40px must fit in one row without squeezing a button below 40px.
+   Budget: 8+8 padding, 82px logo, 4px gap, 88px mode switch (2 x 40 + gaps), 4 x 40px icons = 350px */
+@media (max-width: 380px) {
+  .navbar { padding: 0 8px; }
+  .navbar-logo { margin-right: 4px; }
+  .navbar-logo-img { height: 18px; }
+  .navbar-right { gap: 0; }
+  .mode-switch { margin-right: 0; }
+  .mode-switch-btn { min-width: 40px; }
+  .search-box:focus-within, .search-box:has(.search-input:not(:placeholder-shown)) { left: 8px; right: 8px; }
+}
+
+/* The desktop narrow-window rule hides .navbar-nav behind a menu button; on the phone it is the bottom tab bar */
+@media (max-width: 820px) { .navbar-nav { display: flex !important; } }
+.keyboard-open .navbar-nav { display: none !important; }

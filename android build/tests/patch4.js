@@ -1,0 +1,12 @@
+﻿const fs = require('fs');
+let p = process.argv[2] + '/tests/lib.js', t = fs.readFileSync(p, 'utf8');
+const bad = "const open = await this.ev(!!document.querySelector('.player-overlay, .movie-detail-overlay')).catch(() => false);";
+if (!t.includes(bad)) throw new Error('lib line not found');
+t = t.replace(bad, "const open = await this.ev(`!!document.querySelector('.player-overlay, .movie-detail-overlay')`).catch(() => false);");
+fs.writeFileSync(p, t);
+p = process.argv[2] + '/tests/suites/streaming.js'; t = fs.readFileSync(p, 'utf8');
+const bad2 = "const buf =  === 'HEAD' ? new ArrayBuffer(0) : await r.arrayBuffer();";
+if (!t.includes(bad2)) throw new Error('streaming line not found');
+t = t.replace(bad2, "const buf = ${JSON.stringify(method)} === 'HEAD' ? new ArrayBuffer(0) : await r.arrayBuffer();");
+fs.writeFileSync(p, t);
+console.log('fixed');

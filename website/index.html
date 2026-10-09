@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cinemuah — You own the movies.</title>
+<meta name="description" content="Cinemuah: no device limits, no paywalls, no ads. Made by movie lovers. No corporation involved. (Satire. Mostly.)">
+<meta property="og:title" content="Cinemuah — You own the movies now.">
+<meta property="og:description" content="No device limits. No paywalls. No ads. No corporation. Download for Android and Windows.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cinemuah.com/">
+<meta property="og:image" content="https://cinemuah.com/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cinemuah — You own the movies now.">
+<meta name="twitter:description" content="No device limits. No paywalls. No ads. No corporation. (Satire. Mostly.)">
+<meta name="twitter:image" content="https://cinemuah.com/hero.webp">
+<meta name="theme-color" content="#0a0a0a">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23e50914'/><text x='50' y='72' font-size='64' font-family='Arial' font-weight='900' text-anchor='middle' fill='white'>C</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a; --panel:#141414; --panel2:#1f1f1f; --line:rgba(255,255,255,.12);
+    --text:#fff; --dim:#b3b3b3; --red:#e50914; --red2:#b20710; --gold:#f5c518; --green:#46d369;
+    --pad:4%;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--text);font-family:Inter,"Helvetica Neue",Arial,sans-serif;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;color:inherit}
+  .display{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;letter-spacing:.01em;font-weight:400}
+
+  /* icons */
+  .i{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.14em;display:inline-block}
+  .glyph .i{display:block;margin:0 auto;stroke-width:1.3}
+  .card .ic .i{display:block;stroke-width:1.3}
+  .stars .i{stroke:none;fill:currentColor;vertical-align:-.15em;margin-right:2px}
+
+  /* ---------- NAV ---------- */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:18px var(--pad);background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);transition:background .3s}
+  .nav.solid{background:#0a0a0a;box-shadow:0 2px 20px rgba(0,0,0,.6)}
+  .brand{font-family:"Bebas Neue",Impact,sans-serif;font-size:2.1rem;line-height:1;color:var(--red);letter-spacing:.04em;text-shadow:0 2px 14px rgba(229,9,20,.4)}
+  .links{display:flex;gap:22px;margin-left:36px;font-size:.88rem;color:#e5e5e5}
+  .links a{opacity:.8;transition:opacity .2s}.links a:hover{opacity:1}
+  .nav-l{display:flex;align-items:center}
+  /* logo file is used unmodified (transparent webp); CSS only frames it to the lettering */
+  .brand{display:block;text-shadow:none}
+  .brand .lg{--w:136px;width:var(--w);height:calc(var(--w)*.2308);overflow:hidden}
+  .brand img{display:block;max-width:none;width:calc(var(--w)*1.0834);margin:calc(var(--w)*-.0677) 0 0 calc(var(--w)*-.0433)}
+  footer.site .brand{display:inline-block}
+  footer.site .brand .lg{--w:120px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;isolation:isolate;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:110px var(--pad) 140px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-1;background:url(hero.webp) 38% 30%/cover no-repeat,#0a0a0a}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg,var(--bg) 2%,transparent 40%),
+               linear-gradient(180deg,rgba(10,10,10,.7) 0%,transparent 22%),
+               linear-gradient(90deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.7) 38%,rgba(10,10,10,.15) 75%)}
+  .strip{position:absolute;right:6%;top:-10%;width:210px;height:130%;transform:rotate(12deg);opacity:.55;
+    background:repeating-linear-gradient(180deg,#111 0 150px,#1a1a1a 150px 156px);border-left:14px solid #060606;border-right:14px solid #060606;
+    box-shadow:0 0 80px rgba(229,9,20,.3)}
+  .strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:8px;
+    background:repeating-linear-gradient(180deg,transparent 0 12px,rgba(255,255,255,.5) 12px 30px)}
+  .strip::before{left:-11px}.strip::after{right:-11px}
+  .strip.b{right:24%;width:170px;transform:rotate(12deg) translateY(-6%);opacity:.3}
+  .hero-in{max-width:720px;position:relative}
+  .hero h1{font-size:clamp(3.4rem,11vw,8.5rem);line-height:.9;margin-bottom:22px;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+  .hero h1 span{color:var(--red)}
+  .hero p.sub{font-size:clamp(1.05rem,2vw,1.5rem);max-width:600px;color:#e5e5e5;text-shadow:0 2px 12px rgba(0,0,0,.8);font-weight:500}
+  .hero p.sub s{color:var(--dim)}
+  .meta{display:flex;gap:12px;align-items:center;margin:20px 0 28px;font-size:.9rem;color:var(--dim);flex-wrap:wrap}
+  .meta .match{color:var(--green);font-weight:700}
+  .meta .tag{border:1px solid rgba(255,255,255,.4);padding:0 6px;font-size:.78rem;border-radius:2px;color:#ddd}
+  .dl{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:5px;font-weight:700;font-size:1.05rem;
+    background:rgba(109,109,110,.7);transition:transform .15s,background .2s}
+  .btn:hover{background:rgba(109,109,110,.45);transform:scale(1.03)}
+  .btn svg{width:22px;height:22px;fill:currentColor}
+  .btn.rec{background:#fff;color:#000}
+  .btn.rec:hover{background:rgba(255,255,255,.78)}
+  .fine{margin-top:16px;font-size:.85rem;color:var(--dim)}
+
+  /* ---------- ROWS ---------- */
+  .rows{margin-top:-90px;position:relative;z-index:5}
+  .row{margin-bottom:20px;position:relative}
+  .row h2{font-size:1.35rem;font-weight:700;padding:0 var(--pad);margin-bottom:12px;color:#e5e5e5}
+  .track{display:flex;gap:10px;overflow-x:auto;padding:34px var(--pad) 54px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .track::-webkit-scrollbar{display:none}
+  .arrow{position:absolute;top:58px;bottom:54px;width:var(--pad);min-width:44px;z-index:6;background:rgba(0,0,0,.55);color:#fff;font-size:2rem;opacity:0;transition:opacity .2s}
+  .row:hover .arrow{opacity:1}
+  .arrow.l{left:0}.arrow.r{right:0}
+
+  .poster{flex:none;width:clamp(150px,17vw,230px);aspect-ratio:2/3;border-radius:6px;position:relative;overflow:hidden;
+    padding:16px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;
+    box-shadow:0 4px 16px rgba(0,0,0,.5)}
+  @media (hover:hover){.poster:hover{transform:scale(1.05);z-index:3;box-shadow:0 18px 50px rgba(0,0,0,.9)}}
+  .poster::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 60%)}
+  .poster .glyph{position:absolute;top:12%;left:0;right:0;text-align:center;font-size:clamp(3rem,6vw,4.6rem);filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
+  .poster .rate{position:absolute;top:10px;left:10px;font-size:.62rem;font-weight:800;letter-spacing:.08em;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:2px}
+  .poster h3{position:relative;font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:.95;letter-spacing:.02em}
+  .poster small{position:relative;display:block;margin-top:6px;font-size:.72rem;color:#ddd;opacity:.85}
+  /* poster artwork: images used unmodified, scaled slightly to hide their black frame */
+  .poster .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;transform:scale(1.12);transform-origin:50% 100%;z-index:0}
+  .poster::before{z-index:1}
+  .poster h3,.poster small{z-index:2}
+  .g1{background:linear-gradient(160deg,#e50914,#4a0508)}
+  .g2{background:linear-gradient(160deg,#f5c518,#8a4b00)}
+  .g3{background:linear-gradient(160deg,#6a11cb,#1d0a3d)}
+  .g4{background:linear-gradient(160deg,#00b09b,#06302b)}
+  .g5{background:linear-gradient(160deg,#ff512f,#3a0d0d)}
+  .g6{background:linear-gradient(160deg,#2193b0,#0a1f33)}
+  .g7{background:linear-gradient(160deg,#ee0979,#2b0620)}
+  .g8{background:linear-gradient(160deg,#56ab2f,#0c2a0a)}
+
+  /* top 10 */
+  .t10 .poster{width:clamp(150px,17vw,240px)}
+  .t10 .tw{padding-left:clamp(70px,9vw,120px)}
+  .t10 .num{position:absolute;left:0;bottom:-12px;font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:clamp(9rem,16vw,15rem);line-height:.78;color:#0a0a0a;-webkit-text-stroke:4px #595959;pointer-events:none;z-index:2}
+  
+  .tw{flex:none;position:relative}
+
+  /* ---------- FEATURES ---------- */
+  .band{border-top:8px solid #232323;padding:70px var(--pad)}
+  .band h2.big{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;font-weight:900;letter-spacing:-.02em;margin-bottom:12px}
+  .band .lead{color:var(--dim);font-size:1.15rem;max-width:620px;margin-bottom:34px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .card{border-radius:16px;padding:26px 24px 30px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;
+    background:var(--panel2);border:1px solid var(--line);position:relative;overflow:hidden}
+  .card h3{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+  .card p{color:#cfcfcf;font-size:.98rem}
+  .card .ic{align-self:flex-end;font-size:3.2rem;margin-top:18px;color:#fff;opacity:.9}
+
+  /* compare */
+  .scroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;background:var(--panel);font-size:.98rem;min-width:620px}
+  th,td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);background:#101010}
+  th:last-child{color:var(--red)}
+  td:first-child{font-weight:600}
+  td:nth-child(2){color:#9a9a9a}
+  td:nth-child(3){color:#8fbf9f;font-weight:700}
+  tr:last-child td{border-bottom:0}
+
+  /* reviews */
+  .quote{background:var(--panel2);border-radius:12px;padding:24px;border:1px solid var(--line)}
+  .quote .stars{color:var(--gold);font-size:1.1rem}
+  .quote p{margin:10px 0 14px;font-size:1.05rem}
+  .quote footer{font-size:.85rem;color:var(--dim)}
+  .tiny{font-size:.78rem;opacity:.7}
+
+  /* faq */
+  .faq{max-width:820px;margin:0 auto}
+  .faq-wrap{text-align:center}
+  details{background:var(--panel2);margin-bottom:8px;text-align:left}
+  summary{list-style:none;cursor:pointer;padding:22px 24px;font-size:1.25rem;font-weight:500;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+  summary:hover{background:#2d2d2d}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:2.2rem;font-weight:200;line-height:1;transition:transform .25s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details[open] summary{border-bottom:1px solid #000}
+  details p{padding:22px 24px;font-size:1.1rem;color:#e5e5e5}
+
+  .cta{text-align:center;padding:80px var(--pad) 90px;border-top:8px solid #232323;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 50% 100%,rgba(229,9,20,.25),transparent 70%);z-index:-1}
+  .cta .dl{justify-content:center;margin-top:26px}
+  .cta h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;letter-spacing:-.02em}
+  .cta p{color:var(--dim);margin-top:10px}
+
+  footer.site{border-top:8px solid #232323;padding:40px var(--pad) 70px;color:#8c8c8c;font-size:.88rem;max-width:1100px;margin:0 auto}
+  footer.site .brand{font-size:1.6rem;display:inline-block;margin-bottom:12px}
+  footer.site p+p{margin-top:8px}
+
+  /* ---------- POLISH ---------- */
+  /* scroll reveal (only hides when JS is running) */
+  .js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+  .js .rv.in{opacity:1;transform:none}
+  /* hero slow push-in */
+  .hero-bg{animation:push 26s ease-in-out infinite alternate;transform-origin:60% 40%}
+  @keyframes push{to{transform:scale(1.07)}}
+
+  /* mock app */
+  .show{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .stage{position:relative;padding:0 0 40px}
+  .laptop{background:#0d0d0d;border:1px solid #333;border-radius:14px 14px 4px 4px;padding:10px 10px 0;box-shadow:0 30px 80px rgba(229,9,20,.18),0 10px 40px rgba(0,0,0,.7)}
+  .laptop::after{content:"";display:block;height:14px;margin:10px -22px 0;background:linear-gradient(#2a2a2a,#111);border-radius:0 0 18px 18px}
+  .ui{background:#0a0a0a;border-radius:6px;overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column;font-size:clamp(6px,1vw,11px)}
+  .ui .bar{display:flex;gap:1.4em;align-items:center;padding:1em 1.6em;color:#ccc}
+  .ui .bar img{height:2.2em;width:auto}
+  .ui .ban{flex:1.5;position:relative;background:linear-gradient(90deg,#0a0a0a,rgba(10,10,10,.3)),url(hero.webp) 40% 30%/cover;padding:2em 2.4em;display:flex;flex-direction:column;justify-content:flex-end}
+  .ui .ban h4{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:3.6em;line-height:.9}
+  .ui .ban span{display:inline-block;margin-top:1em;background:#fff;color:#000;font-weight:700;padding:.5em 1.4em;border-radius:3px;width:max-content}
+  .ui .rowm{display:flex;gap:.8em;padding:1.2em 1.6em}
+  .ui .rowm i{flex:1;aspect-ratio:2/3;border-radius:4px;background-size:cover;background-position:50% 100%}
+  .phone{position:absolute;right:-2%;bottom:0;width:26%;background:#0d0d0d;border:3px solid #2c2c2c;border-radius:22px;padding:8px 6px;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+  .phone .ui{aspect-ratio:9/17;border-radius:16px;font-size:clamp(4px,.6vw,7px)}
+  .phone .ui .ban{flex:1}
+  .note{margin-top:22px;padding:12px 16px;border-left:3px solid var(--red);background:rgba(255,255,255,.04);color:#cfcfcf;font-size:.92rem;border-radius:0 6px 6px 0}
+  .note b{color:#fff}
+  .checks{list-style:none;display:grid;gap:14px;margin-top:22px}
+  .checks li{display:flex;gap:12px;align-items:flex-start;color:#e5e5e5}
+  .checks .i{flex:none;width:22px;height:22px;color:var(--red);margin-top:2px;stroke-width:2}
+
+  /* press */
+  .press{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .press blockquote{border-left:3px solid var(--red);padding:4px 0 4px 18px;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.2rem;line-height:1.35;color:#f2f2f2}
+  .press cite{display:block;margin-top:10px;font-family:Inter,sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+  /* terms parody */
+  .terms{max-width:820px;margin:0 auto;background:#0f0f0f;border:1px solid var(--line);border-radius:12px;padding:26px 28px;font-family:Georgia,"Times New Roman",serif;color:#bdbdbd;font-size:.98rem;max-height:330px;overflow:auto;text-align:left}
+  .terms h3{font-family:Inter,sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:18px 0 6px}
+  .terms h3:first-child{margin-top:0}
+  .terms p{margin:0}
+  .agree{max-width:820px;margin:14px auto 0;display:flex;gap:10px;align-items:center;color:var(--dim);font-size:.9rem;text-align:left}
+  .agree input{accent-color:var(--red);width:18px;height:18px}
+
+  /* cta extras */
+  .cancel{margin-top:22px;background:none;color:var(--dim);text-decoration:underline;font-size:.9rem}
+  .cancel:hover{color:#fff}
+
+  /* footer links */
+  .flinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 24px;margin:6px 0 26px;list-style:none}
+  .flinks a{color:#8c8c8c;font-size:.85rem;text-decoration:underline;text-underline-offset:3px}
+  .flinks a:hover{color:#fff}
+  .flinks em{font-style:normal;opacity:.55}
+
+  /* toast, cookie banner, still watching */
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,40px);background:#fff;color:#000;padding:12px 20px;border-radius:6px;font-weight:600;font-size:.92rem;opacity:0;pointer-events:none;transition:.35s;z-index:90;max-width:90vw;text-align:center}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  .biscuit{position:fixed;left:20px;bottom:20px;z-index:80;width:min(360px,calc(100vw - 40px));background:#181818;border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.7);transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .biscuit.on{transform:none}
+  .biscuit h4{display:flex;gap:8px;align-items:center;font-size:1rem;margin-bottom:6px}
+  .biscuit p{color:var(--dim);font-size:.88rem;margin-bottom:14px}
+  .biscuit .row2{display:flex;gap:8px}
+  .biscuit button{flex:1;padding:9px 10px;border-radius:5px;font-weight:600;font-size:.85rem;background:#333}
+  .biscuit button.p{background:#fff;color:#000}
+
+  /* top-10 meta line */
+  .poster .mm{position:relative;z-index:2;display:block;margin-top:5px;font-style:normal;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:#ffb3b8}
+
+  /* uniform red-tinted cards (match the poster art) */
+  .card{background:linear-gradient(165deg,#2a0b0e 0%,#150708 60%,#0e0e0e 100%);border-color:rgba(229,9,20,.25);transition:transform .3s,border-color .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(229,9,20,.6);box-shadow:0 18px 50px rgba(229,9,20,.15)}
+  .card::after{content:"";position:absolute;right:-40px;bottom:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(229,9,20,.28),transparent 70%);pointer-events:none}
+  .card .ic{color:#ff5a64;opacity:1;z-index:1}
+  .card h3,.card p{position:relative;z-index:1}
+
+  @media (max-width:900px){.show{grid-template-columns:1fr}}
+  @media (max-width:720px){
+    .hero-bg{animation:none}
+    .band{padding:48px var(--pad)}
+    .band h2.big{font-size:2rem}
+    .band .lead{font-size:1rem;margin-bottom:26px}
+    .cta{padding:56px var(--pad) 64px}
+    .cta h2{font-size:2rem}
+    .cta .btn{flex:1 1 100%}
+    .nav{padding:14px var(--pad)}
+    .brand .lg{--w:112px}
+    .row h2{font-size:1.15rem}
+    .card{min-height:0}
+    .card .ic{font-size:2.4rem;margin-top:14px}
+    .press blockquote{font-size:1.08rem}
+    .terms{max-height:280px;padding:20px}
+    summary{padding:18px;font-size:1.05rem}
+    details p{padding:16px 18px;font-size:1rem}
+    .biscuit{left:12px;bottom:12px;width:calc(100vw - 24px);padding:14px}
+    footer.site{padding-bottom:max(48px,env(safe-area-inset-bottom))}
+    .flinks{grid-template-columns:1fr 1fr}
+    table{min-width:0;font-size:.84rem}
+    th,td{padding:12px 9px;vertical-align:top}
+    th{font-size:.62rem;letter-spacing:.08em}
+    td:first-child{width:27%}
+    .hero-bg{background-position:68% 35%}
+    .phone{width:30%}
+    .links{display:none}
+    .hero{min-height:92vh;padding-bottom:120px}
+    .strip,.strip.b{opacity:.18}
+    .arrow{display:none}
+    .btn{flex:1 1 100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-nophone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/><path d="M3 3l18 18"/></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="i-popcorn" viewBox="0 0 24 24"><path d="M6 10l1.5 11h9L18 10"/><path d="M10 10v11M14 10v11"/><path d="M5 10a3 3 0 0 1 2-5 3 3 0 0 1 5-1.5A3 3 0 0 1 17 5a3 3 0 0 1 2 5z"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.2 1.8 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></symbol>
+    <symbol id="i-clapper" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 9l2-5h16l-2 5M8 4l-2 5M13 4l-2 5M18 4l-2 5"/></symbol>
+    <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M3 20l6-11 4 7 3-4 5 8z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 12h4M3 16h4M17 8h4M17 12h4M17 16h4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.7 4 2.5 4 6"/></symbol>
+    <symbol id="i-cookie" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4-4 4 4 0 0 1-5-5z"/><path d="M8.5 10.5h.01M12 15h.01M15.5 13.5h.01M9 15.5h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.500"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-l">
+    <a class="brand" href="#" aria-label="Cinemuah"><span class="lg"><img src="logo.webp" alt="Cinemuah"></span></a>
+    <nav class="links"><a href="#why">Why</a><a href="#compare">Compare</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a></nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <h1 class="display">You own<br>the movies.<br><span>Watch anywhere.</span></h1>
+    <p class="sub">No device limits. No paywalls. No ads. Made by movie lovers, with <s>a board of directors</s> no corporation involved whatsoever.</p>
+    <div class="meta"><span class="match">100% Free</span><span>2026</span><span class="tag">U/A ∞</span><span>Unlimited devices</span><span class="tag">HD</span></div>
+
+    <div class="dl" id="download">
+      <!-- Links are set in the LINKS object at the bottom of the file -->
+      <a class="btn" data-os="android" href="#android">
+        <svg viewBox="0 0 24 24"><path d="M6 18c0 .55.45 1 1 1h1v3.5a1.5 1.5 0 0 0 3 0V19h2v3.5a1.5 1.5 0 0 0 3 0V19h1c.55 0 1-.45 1-1V8H6v10ZM3.5 8A1.5 1.5 0 0 0 2 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 3.5 8Zm17 0A1.5 1.5 0 0 0 19 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 20.5 8ZM15.53 2.16l1.3-1.3a.5.5 0 0 0-.7-.7l-1.48 1.48A5.97 5.97 0 0 0 12 1c-.96 0-1.86.23-2.66.64L7.87.16a.5.5 0 0 0-.7.7l1.3 1.3A5.98 5.98 0 0 0 6 7h12a5.98 5.98 0 0 0-2.47-4.84ZM10 5H9V4h1v1Zm5 0h-1V4h1v1Z"/></svg>
+        Android
+      </a>
+      <a class="btn" data-os="windows" href="#windows">
+        <svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.4v7H3V5.5Zm8.5-1.2L21 3v8.4h-9.5V4.3ZM3 12.6h7.5v7L3 18.5v-5.9Zm8.5 0H21V21l-9.5-1.3v-7.1Z"/></svg>
+        Windows
+      </a>
+    </div>
+    <p class="fine" id="detected">Free. Forever.</p>
+  </div>
+</section>
+
+<!-- ROWS -->
+<main class="rows">
+
+  <div class="row t10">
+    <h2>Top 10 Things We Refuse To Do Today</h2>
+    <button class="arrow l" aria-label="Scroll left">‹</button>
+    <div class="track">
+      <div class="tw"><span class="num">1</span><div class="poster g1"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/ads.webp" alt=""><h3>No Ads</h3><small>Not even a tiny one.</small><em class="mm">Rated U &middot; 0h 00m of ads</em></div></div>
+      <div class="tw"><span class="num">2</span><div class="poster g2"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/paywall.webp" alt=""><h3>No Paywalls</h3><small>The wall is gone.</small><em class="mm">Genre: Heist &middot; Price: nil</em></div></div>
+      <div class="tw"><span class="num">3</span><div class="poster g3"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/devices.webp" alt=""><h3>No Device Limits</h3><small>Bring all your screens.</small><em class="mm">Runtime: &infin; &middot; Screens: yes</em></div></div>
+      <div class="tw"><span class="num">4</span><div class="poster g4"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/corporation.webp" alt=""><h3>No Corporation</h3><small>Suits not found.</small><em class="mm">Genre: Horror &middot; Cast: nobody</em></div></div>
+      <div class="tw"><span class="num">5</span><div class="poster g5"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/emails.webp" alt=""><h3>No Price-Hike Emails</h3><small>We don't have your email.</small><em class="mm">Rated: spam-free</em></div></div>
+      <div class="tw"><span class="num">6</span><div class="poster g6"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/household.webp" alt=""><h3>No “Household” Police</h3><small>Share with whoever.</small><em class="mm">Genre: Thriller &middot; Suspect: you</em></div></div>
+      <div class="tw"><span class="num">7</span><div class="poster g7"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/watching.webp" alt=""><h3>No “Still Watching?”</h3><small>Yes. Always. Leave us be.</small><em class="mm">Genre: Mystery &middot; Still watching: yes</em></div></div>
+      <div class="tw"><span class="num">8</span><div class="poster g8"><img class="pimg" loading="lazy" decoding="async" width="240" height="360" src="cards/removals.webp" alt=""><h3>No Surprise Removals</h3><small>It stays. It stays.</small><em class="mm">Genre: Drama &middot; Ending: not cancelled</em></div></div>
+    </div>
+    <button class="arrow r" aria-label="Scroll right">›</button>
+  </div>
+
+</main>
+
+
+<!-- SHOWCASE -->
+<section class="band" id="app">
+  <div class="show">
+    <div>
+      <h2 class="big">Looks expensive. Costs nothing.</h2>
+      <p class="lead" style="margin-bottom:0">One app. Every screen you own, and a few you've borrowed.</p>
+      <ul class="checks">
+        <li><svg class="i"><use href="#i-check"/></svg><span>Your whole library, one tap from play.</span></li>
+        <li><svg class="i"><use href="#i-check"/></svg><span>Picks up where you left off, on any device.</span></li>
+        <li><svg class="i"><use href="#i-check"/></svg><span>No login wall, no &ldquo;are you sure?&rdquo;, no surprises.</span></li>
+      </ul>
+      <p class="note"><b>Note:</b> All available shows and movies depend on torrent availability.</p>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="laptop"><div class="ui">
+        <div class="bar"><img src="logo.webp" alt=""><span>Home</span><span>Library</span><span>Watchlist</span></div>
+        <div class="ban"><h4>You own<br>the movies.</h4><span>Play</span></div>
+        <div class="rowm">
+          <i style="background-image:url(cards/ads.webp)"></i><i style="background-image:url(cards/paywall.webp)"></i><i style="background-image:url(cards/devices.webp)"></i><i style="background-image:url(cards/corporation.webp)"></i><i style="background-image:url(cards/watching.webp)"></i>
+        </div>
+      </div></div>
+      <div class="phone"><div class="ui">
+        <div class="bar"><img src="logo.webp" alt=""></div>
+        <div class="ban"><h4>Watch<br>anywhere.</h4><span>Play</span></div>
+        <div class="rowm"><i style="background-image:url(cards/emails.webp)"></i><i style="background-image:url(cards/removals.webp)"></i></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+<!-- WHY -->
+<section class="band" id="why">
+  <h2 class="big">More reasons to press play.</h2>
+  <p class="lead">We checked every feature in the “Premium Plus Ultra Max” tier. Turns out most of them were just the normal product.</p>
+  <div class="grid">
+    <div class="card"><div><h3>You own the movies</h3><p>Not “license.” Own. Spiritually. Emotionally. Vibes-wise.</p></div><div class="ic"><svg class="i"><use href="#i-film"/></svg></div></div>
+    <div class="card"><div><h3>Watch on anything</h3><p>Phone, laptop, desktop, toaster. We won't ask who's living in your household.</p></div><div class="ic"><svg class="i"><use href="#i-tv"/></svg></div></div>
+    <div class="card"><div><h3>Made by movie lovers</h3><p>People who've sat through the whole end credits just to see the best boy's name.</p></div><div class="ic"><svg class="i"><use href="#i-users"/></svg></div></div>
+    <div class="card"><div><h3>No corporation</h3><p>No shareholders, no quarterly calls, no “synergy.” Just friends and too much popcorn.</p></div><div class="ic"><svg class="i"><use href="#i-building"/></svg></div></div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="band" id="compare">
+  <h2 class="big">Cinemuah vs. Big Streaming™</h2>
+  <p class="lead">A scientifically unbiased comparison, conducted by us.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Big Streaming™</th><th>Cinemuah</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly price</td><td>$7.99 → $17.99 → “it's complicated”</td><td>$0.00</td></tr>
+        <tr><td>Ads</td><td>Yes, during the sad part</td><td>None</td></tr>
+        <tr><td>Devices</td><td>2. Maybe.</td><td>All of them</td></tr>
+        <tr><td>Password sharing</td><td>A crime, apparently</td><td>It's called “caring”</td></tr>
+        <tr><td>That show you love</td><td>Removed last Friday</td><td>Still here</td></tr>
+        <tr><td>Who's in charge</td><td>A committee</td><td>Some friends</td></tr>
+        <tr><td>Price-hike emails</td><td>Quarterly</td><td>We don't have your email</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="band" id="press">
+  <h2 class="big">What the critics are saying.</h2>
+  <p class="lead">Fake publications. Real enthusiasm.</p>
+  <div class="press">
+    <blockquote>&ldquo;A revolution in not charging you.&rdquo;<cite>The Daily Nobody</cite></blockquote>
+    <blockquote>&ldquo;I haven't been this free since I cancelled four other things.&rdquo;<cite>Popcorn Weekly</cite></blockquote>
+    <blockquote>&ldquo;Four stars. The fifth was withheld on principle.&rdquo;<cite>Sight &amp; Slightly Louder</cite></blockquote>
+    <blockquote>&ldquo;Finally, a sequel nobody asked to pay for.&rdquo;<cite>Rolling Stoned Cinema</cite></blockquote>
+  </div>
+</section>
+<!-- REVIEWS -->
+<section class="band" id="reviews">
+  <h2 class="big">Loved by people we definitely didn't make up.</h2>
+  <p class="lead">Real reviews from real* humans. <span class="tiny">*Terms and conditions of “real” may apply.</span></p>
+  <div class="grid">
+    <div class="quote"><div class="stars"><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg></div><p>“I watched a film without being asked if I was still watching. I was. I'm always still watching.”</p><footer>— Dev, on a train</footer></div>
+    <div class="quote"><div class="stars"><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg></div><p>“My mom finally has her own login. It's no login. She's thrilled. We're all thrilled.”</p><footer>— Priya, family IT department</footer></div>
+    <div class="quote"><div class="stars"><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg><svg class="i"><use href="#i-star"/></svg></div><p>“No ads, no paywall, no corporation. I got suspicious and checked under the couch. Still no corporation.”</p><footer>— Sam, thorough</footer></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band faq-wrap" id="faq">
+  <h2 class="big">Frequently Asked Questions</h2>
+  <div class="faq" style="margin-top:30px">
+    <details><summary>Do I really own the movies?</summary><p>Spiritually, yes. Legally, we're movie lovers, not lawyers. This site is satire.</p></details>
+    <details><summary>What's the catch?</summary><p>The catch is that there's no catch. We checked. Twice. Then a third time, out of habit.</p></details>
+    <details><summary>Who's behind Cinemuah?</summary><p>A few friends, one very patient cat, and zero board members.</p></details>
+    <details><summary>Is it really free?</summary><p>Yes. If you feel guilty, buy a ticket at your local cinema. They deserve nice things.</p></details>
+    <details><summary>Why &ldquo;Cinemuah&rdquo;?</summary><p>It's the sound of a chef's kiss. <em>Mwah.</em> Applied to cinema.</p></details>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="band faq-wrap" id="terms">
+  <h2 class="big">Terms &amp; Conditions</h2>
+  <p class="lead" style="margin-inline:auto">The short version. Please read carefully. You won't.</p>
+  <div class="terms" tabindex="0">
+    <h3>1. The Agreement</h3><p>By clicking Download you agree to nothing, and we agree to nothing back. It's the most balanced contract you'll sign this year.</p>
+    <h3>2. Fees</h3><p>There are no fees. There are also no &ldquo;processing fees&rdquo;, &ldquo;convenience fees&rdquo;, or &ldquo;fees for telling you about fees&rdquo;.</p>
+    <h3>3. Your Content</h3><p>You own the movies. Spiritually. We would like to remind you that spiritual ownership is legally non-binding and emotionally priceless.</p>
+    <h3>4. Termination</h3><p>We may terminate your account at any time, once we find out what an account is.</p>
+    <h3>5. Changes To These Terms</h3><p>We reserve the right to change these terms. We have no idea how. We have no lawyers.</p>
+    <h3>6. Governing Law</h3><p>This agreement is governed by the laws of Common Sense, jurisdiction: your couch.</p>
+  </div>
+  <label class="agree"><input type="checkbox" id="agree"> <span>I have read and understood these terms. (I haven't.)</span></label>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to own things again?</h2>
+  <p>Pick your device. We'll wait. We have no quarterly targets.</p>
+  <div class="dl">
+    <a class="btn" data-os="android" href="#android">Android</a>
+    <a class="btn" data-os="windows" href="#windows">Windows</a>
+  </div>
+  <button class="cancel" data-toast="There&#39;s nothing to cancel. That&#39;s the joke.">Cancel anytime</button>
+</section>
+
+<footer class="site">
+  <a class="brand" href="#" aria-label="Cinemuah"><span class="lg"><img src="logo.webp" alt="Cinemuah"></span></a>
+  <ul class="flinks">
+    <li><a href="#" data-toast="Investor Relations: none. We checked the couch cushions.">Investor Relations <em>(none)</em></a></li>
+    <li><a href="#" data-toast="We're not hiring. We're busy watching.">Careers <em>(we're watching)</em></a></li>
+    <li><a href="#press">Press <em>(Popcorn Weekly)</em></a></li>
+    <li><a href="#terms">Terms <em>(read them)</em></a></li>
+    <li><a href="#" data-toast="Privacy policy: we know nothing, and that's how we like it.">Privacy <em>(we know nothing)</em></a></li>
+    <li><a href="#" data-biscuit>Cookie Preferences <em>(biscuits)</em></a></li>
+  </ul>  <p>© <span id="yr">2026</span> Cinemuah — made with <svg class="i"><use href="#i-popcorn"/></svg> by movie lovers. No corporation was involved.</p>
+  <p>This website is a work of satire. Any resemblance to subscription fatigue, living or dead, is entirely intentional.</p>
+</footer>
+
+<!-- popups -->
+<div class="toast" id="toast" role="status"></div>
+<div class="biscuit" id="biscuit" role="dialog" aria-label="Cookie notice">
+  <h4><svg class="i"><use href="#i-cookie"/></svg> We use zero cookies.</h4>
+  <p>Have a biscuit instead. It's on us. Everything is.</p>
+  <div class="row2"><button class="p" data-close-biscuit>Accept biscuit</button><button data-close-biscuit>Decline biscuit</button></div>
+</div>
+<script>
+  // Put your real download links here; every button on the page picks them up.
+  const LINKS = {
+    android: "downloads/Cinemuah.apk",   // served from the downloads/ folder
+    windows: "downloads/Cinemuah-Setup-1.0.0.exe",   // served from the downloads/ folder
+  };
+  document.querySelectorAll("[data-os]").forEach(a => { a.href = LINKS[a.dataset.os]; if (/\.(exe|dmg|apk)$/i.test(LINKS[a.dataset.os])) a.setAttribute("download", ""); });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Highlight the button matching the visitor's OS
+  const ua = navigator.userAgent;
+  const os = /android/i.test(ua) ? "android" : /Win/i.test(ua) ? "windows" : null;
+  if (os) {
+    const names = {android:"Android", windows:"Windows"};
+    document.querySelectorAll(`#download [data-os="${os}"]`).forEach(b => b.classList.add("rec"));
+    document.getElementById("detected").textContent = `We noticed you're on ${names[os]}. Free. Forever.`;
+  }
+
+  // Solid nav on scroll
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("solid", scrollY > 40);
+  addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  // Row arrows
+  document.querySelectorAll(".row").forEach(row => {
+    const track = row.querySelector(".track");
+    row.querySelector(".arrow.l").onclick = () => track.scrollBy({left:-track.clientWidth*.85, behavior:"smooth"});
+    row.querySelector(".arrow.r").onclick = () => track.scrollBy({left: track.clientWidth*.85, behavior:"smooth"});
+  });
+  // ---------- polish & jokes ----------
+  const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const toastEl = $("#toast"); let toastT;
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove("on"), 3200); }
+  document.addEventListener("click", e => {
+    const el = e.target.closest("[data-toast]");
+    if (el) { e.preventDefault(); toast(el.dataset.toast); }
+  });
+  $("#agree").addEventListener("change", e => { if (e.target.checked) toast("Wonderful. You're lying, but we respect it."); });
+
+  // scroll reveal
+  const targets = $$(".band h2, .band .lead, .card, .quote, .press blockquote, details, .show > *, .terms, .agree, .cta > *");
+  targets.forEach(el => {
+    el.classList.add("rv");
+    const sibs = [...el.parentElement.children].filter(c => c.classList.contains("rv"));
+    el.style.setProperty("--d", Math.min(sibs.indexOf(el), 6) * 0.08 + "s");
+  });
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+    targets.forEach(el => io.observe(el));
+  } else targets.forEach(el => el.classList.add("in"));
+
+  // cookie "biscuit" banner
+  const biscuit = $("#biscuit");
+  if (!sessionStorage.getItem("bisc")) setTimeout(() => biscuit.classList.add("on"), 1800);
+  $$("[data-close-biscuit]").forEach(b => b.onclick = () => { biscuit.classList.remove("on"); sessionStorage.setItem("bisc", 1); toast("Biscuit noted. No data was harmed."); });
+  $$("[data-biscuit]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); biscuit.classList.add("on"); }));</script>
+</body>
+</html>
