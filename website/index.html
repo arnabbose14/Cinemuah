@@ -512,8 +512,8 @@
 <script>
   // Put your real download links here; every button on the page picks them up.
   const LINKS = {
-    android: "downloads/Cinemuah.apk",   // served from the downloads/ folder
-    windows: "downloads/Cinemuah-Setup-1.0.0.exe",   // served from the downloads/ folder
+    android: "https://github.com/arnabbose14/Cinemuah/releases/download/v1.0.0/Cinemuah.apk",
+    windows: "https://github.com/arnabbose14/Cinemuah/releases/download/v1.0.0/Cinemuah-Setup-1.0.0.exe",
   };
   document.querySelectorAll("[data-os]").forEach(a => { a.href = LINKS[a.dataset.os]; if (/\.(exe|dmg|apk)$/i.test(LINKS[a.dataset.os])) a.setAttribute("download", ""); });
   document.getElementById("yr").textContent = new Date().getFullYear();
