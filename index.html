@@ -267,10 +267,11 @@
     th,td{padding:12px 9px;vertical-align:top}
     th{font-size:.62rem;letter-spacing:.08em}
     td:first-child{width:27%}
-    .hero-bg{background-position:68% 35%}
+    .hero-bg{background-size:100% auto;background-position:center 64px;transform:none}
+    .hero-bg::after{background:linear-gradient(180deg,transparent 0,transparent calc(64px + 25vw),var(--bg) calc(64px + 42vw))}
     .phone{width:30%}
     .links{display:none}
-    .hero{min-height:92vh;padding-bottom:120px}
+    .hero{min-height:92svh;align-items:flex-start;padding-top:calc(80px + 41.2vw);padding-bottom:80px}
     .strip,.strip.b{opacity:.18}
     .arrow{display:none}
     .btn{flex:1 1 100%;justify-content:center}
