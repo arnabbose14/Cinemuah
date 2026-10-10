@@ -1,0 +1,32 @@
+name: Build macOS DMG
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  dmg:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-13      # Intel
+            arch: x64
+          - os: macos-14      # Apple Silicon
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx electron-builder --mac dmg --${{ matrix.arch }} --config "mac build/electron-builder.mac.json" --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cinemuah-mac-${{ matrix.arch }}
+          path: release-mac/*.dmg
+          if-no-files-found: error
